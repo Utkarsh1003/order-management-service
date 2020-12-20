@@ -29,7 +29,7 @@ public class ValidateItemAvailability implements OrderValidator {
 
         for(ItemRequest itemRequest:items) {
             Integer itemQuantity = warehouseDao.getItemQuantity(request.getWarehouseId(), request.getDeliveryDate(), itemRequest.getItemId());
-            if(itemQuantity == null || itemQuantity < itemRequest.getQuantity())
+            if(itemQuantity == null || itemQuantity <= itemRequest.getQuantity())
                 return false;
         }
 

@@ -29,7 +29,7 @@ public class ValidateCategoryThreshold implements OrderValidator {
         Map<ItemCategory, Integer> itemCategoryCount = getItemCategoryCountFromReq(request);
         for (ItemCategory itemCategory : itemCategoryCount.keySet()) {
             Integer threshold = categoryThresholdDao.getLimit(request.getDeliveryDate(), itemCategory);
-            if(threshold == null || itemCategoryCount.get(itemCategory) > threshold)
+            if(threshold == null || itemCategoryCount.get(itemCategory) >= threshold)
                 return false;
         }
 
