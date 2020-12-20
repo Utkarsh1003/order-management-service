@@ -1,6 +1,6 @@
 # Order Management Service
 
-This is simple dropwizard project for order management service.
+This is a simple dropwizard project for order management service.
 
 ## Table of Content
 - [Problem Statement](#problem-statement)
