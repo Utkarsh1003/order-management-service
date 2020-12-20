@@ -37,7 +37,7 @@ The Dropwizard application is now listening on port 8080. You can use the follow
 The application will shut down gracefully by pressing ***^C*** on mac OR ***Ctrl+C*** on windows
 
 ## APIs
-#### Check item availability
+#### 1. Check item availability
   *Request*
   ```
   curl -L -X POST 'http://localhost:8080/v1/order/availability' -H 'Content-Type: application/json' -d '{
@@ -67,7 +67,7 @@ The application will shut down gracefully by pressing ***^C*** on mac OR ***Ctrl
   }
   ```
 
-#### Reserve Order
+#### 2. Reserve Order
   *Request*
   ```
   curl -L -X POST 'http://localhost:8080/v1/order/reserve' -H 'Content-Type: application/json' -d '{
