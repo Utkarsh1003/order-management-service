@@ -11,15 +11,13 @@ This is a simple dropwizard project for order management service.
 
 Design & Build APIs that provide the capability to check and reserve orders that we can serve on particular delivery date.
 An order can be served only if all items (with requested quantities) can be served. In order to do this, there are a bunch of criteria that we want to consider:
--  We want to have a check based on available items in the Warehouse
-    Warehouse has items which are available for different delivery dates.
-    If item(s) are not available, we cannot take the order. Items start to become unavailable as and when we reserve orders.
+-  We want to have a check based on available items in the Warehouse. Warehouse has items which are available for different delivery dates. If item(s) are not available, we cannot take the order. Items start to become unavailable as and when we reserve orders.
     
     Eg. Warehouse has 100 units of Item *I1* for 15 Oct 20
     If we have reserved 99 units of *I1* for orders on 15 Oct 20, we can take only order of 1 more quantity for *I1*.
     
--  We also want to have a check based on item category
-    Every Item belongs to a Category.
+-  We also want to have a check based on item category. Every Item belongs to a Category.
+
     Eg. All fruits, vegetable items belong to a category called *F_N_V*.
     
     We want to be able to throttle maximum items that can be shipped for a given category on a given delivery date.
