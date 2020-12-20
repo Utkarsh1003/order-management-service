@@ -3,10 +3,11 @@
 This is simple dropwizard project for order management service.
 
 ## Table of Content
-- [Problem Statement](https://github.com/Utkarsh1003/order-management-service/tree/master#problem-statement)
-- [Hot to run](https://github.com/Utkarsh1003/order-management-service/tree/master#how-to-run)
-- [APIs integerated](https://github.com/Utkarsh1003/order-management-service/tree/master#apis)
+- [Problem Statement](#ps)
+- [Hot to run](#run)
+- [APIs integerated](#api)
 
+<a name="ps"/>
 ## Problem Statement
 
 Design & Build APIs that provide the capability to check and reserve orders that we can serve on particular delivery date.
@@ -30,6 +31,7 @@ An order can be served only if all items (with requested quantities) can be serv
     
 We can fulfil the order only if all the criteria are met.
 
+<a name="run"/>
 ## How to run
 Running the server
 - Clone project to you local system
@@ -39,6 +41,7 @@ Running the server
 The Dropwizard application is now listening on ports 8080. You can use the following APIs to test it.
 The application will shut down gracefully by pressing ***^C*** on mac OR ***Ctrl+C*** on windows
 
+<a name="api"/>
 ## APIs
 #### Check item availability
   *Request*
