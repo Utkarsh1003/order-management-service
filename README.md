@@ -33,7 +33,7 @@ Running the server
 - Clone project to you local system
 - Go into your project directory and run ```java -jar target/OrderManagementService-1.0-SNAPSHOT.jar server src/main/resources/config.yml```
 
-The Dropwizard application is now listening on ports 8080. You can use the following APIs to test it.
+The Dropwizard application is now listening on port 8080. You can use the following APIs to test it.
 The application will shut down gracefully by pressing ***^C*** on mac OR ***Ctrl+C*** on windows
 
 ## APIs
