@@ -3,9 +3,9 @@
 This is simple dropwizard project for order management service.
 
 ## Table of Content
-- [Problem Statement](https://github.com/Utkarsh1003/order-management-service/tree/master#problem-statement)
-- [Hot to run](https://github.com/Utkarsh1003/order-management-service/tree/master#how-to-run)
-- [APIs integerated](https://github.com/Utkarsh1003/order-management-service/tree/master#apis)
+- [Problem Statement](#problem-statement)
+- [Hot to run](#how-to-run)
+- [APIs integerated](#apis)
 
 ## Problem Statement
 
