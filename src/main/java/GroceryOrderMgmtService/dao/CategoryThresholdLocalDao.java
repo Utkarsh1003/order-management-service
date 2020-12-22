@@ -27,6 +27,12 @@ public class CategoryThresholdLocalDao implements CategoryThresholdDao{
 
     @Override
     public Integer getLimit(Date date, ItemCategory itemCategory) {
+        if(dayWiseItemCategoryThreshold.isEmpty())
+            return 0;
+
+        if(dayWiseItemCategoryThreshold.get(date) == null || dayWiseItemCategoryThreshold.get(date).isEmpty())
+            return 0;
+
         return dayWiseItemCategoryThreshold.get(date).get(itemCategory);
     }
 
