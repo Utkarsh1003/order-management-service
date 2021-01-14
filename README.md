@@ -5,7 +5,7 @@ Used Decorator Pattern for validators.
 
 ## Table of Content
 - [Problem Statement](#problem-statement)
-- [Hot to run](#how-to-run)
+- [How to run](#how-to-run)
 - [APIs integerated](#apis)
 
 ## Problem Statement
