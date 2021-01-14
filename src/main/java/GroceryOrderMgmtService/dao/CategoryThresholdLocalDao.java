@@ -1,6 +1,6 @@
 package GroceryOrderMgmtService.dao;
 
-import GroceryOrderMgmtService.Constants;
+import GroceryOrderMgmtService.IConstants;
 import GroceryOrderMgmtService.config.CategoryThresholdConfig;
 import GroceryOrderMgmtService.enums.ItemCategory;
 
@@ -40,7 +40,7 @@ public class CategoryThresholdLocalDao implements CategoryThresholdDao{
         categoryThresholdConfig.forEach(itemCategoryThreshold -> {
             String stringDate = itemCategoryThreshold.getDate();
             try {
-                Date date = new SimpleDateFormat(Constants.dateParserPattern).parse(stringDate);
+                Date date = new SimpleDateFormat(IConstants.dateParserPattern).parse(stringDate);
                 dayWiseItemCategoryThreshold.put(date, itemCategoryThreshold.getItemCategoryThresholdMap());
             } catch (ParseException e) {
                 e.printStackTrace();

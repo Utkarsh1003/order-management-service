@@ -2,6 +2,6 @@ package GroceryOrderMgmtService.validators;
 
 import GroceryOrderMgmtService.dto.OrderRequest;
 
-public interface OrderValidator {
+public interface IOrderValidator {
     boolean validate(OrderRequest request);
 }

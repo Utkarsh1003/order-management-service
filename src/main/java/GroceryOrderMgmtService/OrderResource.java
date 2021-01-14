@@ -1,7 +1,7 @@
 package GroceryOrderMgmtService;
 
 import GroceryOrderMgmtService.dto.OrderRequest;
-import GroceryOrderMgmtService.services.OrderFulfilmentService;
+import GroceryOrderMgmtService.services.IOrderFulfilmentService;
 import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.POST;
@@ -13,9 +13,9 @@ import javax.ws.rs.core.Response;
 @Path("v1/order")
 @Produces(MediaType.APPLICATION_JSON)
 public class OrderResource {
-    private final OrderFulfilmentService orderFulfilmentService;
+    private final IOrderFulfilmentService orderFulfilmentService;
 
-    public OrderResource(OrderFulfilmentService orderFulfilmentService) {
+    public OrderResource(IOrderFulfilmentService orderFulfilmentService) {
         this.orderFulfilmentService = orderFulfilmentService;
     }
 

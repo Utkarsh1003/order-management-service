@@ -9,23 +9,18 @@ import GroceryOrderMgmtService.enums.ItemCategory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ValidateCategoryThreshold implements OrderValidator {
-    private static ValidateCategoryThreshold instance;
-
-    public static ValidateCategoryThreshold getInstance(){
-        if(instance == null)
-            instance = new ValidateCategoryThreshold();
-
-        return instance;
-    }
-
+public class ValidateCategoryThreshold extends OrderValidatorDecorator {
     private CategoryThresholdDao categoryThresholdDao;
-    private ValidateCategoryThreshold(){
+    public ValidateCategoryThreshold(IOrderValidator orderValidator){
+        super(orderValidator);
         this.categoryThresholdDao = CategoryThresholdLocalDao.getInstance();
     }
 
     @Override
     public boolean validate(OrderRequest request) {
+        if(!super.validate(request))
+            return false;
+
         Map<ItemCategory, Integer> itemCategoryCount = getItemCategoryCountFromReq(request);
         for (ItemCategory itemCategory : itemCategoryCount.keySet()) {
             Integer threshold = categoryThresholdDao.getLimit(request.getDeliveryDate(), itemCategory);

@@ -1,7 +1,7 @@
 package GroceryOrderMgmtService.dto;
 
 
-import GroceryOrderMgmtService.Constants;
+import GroceryOrderMgmtService.IConstants;
 
 import javax.validation.ValidationException;
 import java.text.ParseException;
@@ -40,7 +40,7 @@ public class OrderRequest {
 
     public void setDeliveryDate(String deliveryDate) {
         try {
-            this.deliveryDate = new SimpleDateFormat(Constants.dateParserPattern).parse(deliveryDate);
+            this.deliveryDate = new SimpleDateFormat(IConstants.dateParserPattern).parse(deliveryDate);
         } catch (ParseException e) {
             e.printStackTrace();
             throw new ValidationException("Invalid date");

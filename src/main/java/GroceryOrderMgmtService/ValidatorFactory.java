@@ -1,7 +1,8 @@
 package GroceryOrderMgmtService;
 
 import GroceryOrderMgmtService.enums.ValidatorRule;
-import GroceryOrderMgmtService.validators.OrderValidator;
+import GroceryOrderMgmtService.validators.DefaultOrderValidator;
+import GroceryOrderMgmtService.validators.IOrderValidator;
 import GroceryOrderMgmtService.validators.ValidateCategoryThreshold;
 import GroceryOrderMgmtService.validators.ValidateItemAvailability;
 
@@ -18,20 +19,18 @@ public class ValidatorFactory {
         return instance;
     }
 
-    private OrderValidator availabilityValidator;
-    private OrderValidator categoryThresholdValidator;
+    private IOrderValidator defaultValidator;
 
-    public ValidatorFactory() {
-        this.availabilityValidator = ValidateItemAvailability.getInstance();
-        this.categoryThresholdValidator = ValidateCategoryThreshold.getInstance();
+    private ValidatorFactory() {
+        this.defaultValidator = DefaultOrderValidator.getInstance();
     }
 
-    public List<OrderValidator> getValidators(ValidatorRule validatorRule){
+    public IOrderValidator getValidator(ValidatorRule validatorRule){
         switch (validatorRule) {
             case RULE1:
-                return Arrays.asList(availabilityValidator, categoryThresholdValidator);
+                return new ValidateItemAvailability(new ValidateCategoryThreshold(defaultValidator));
             default:
-                return Arrays.asList(availabilityValidator, categoryThresholdValidator);
+                return defaultValidator;
         }
     }
 }

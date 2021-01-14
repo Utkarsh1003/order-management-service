@@ -1,6 +1,6 @@
 package GroceryOrderMgmtService.dao;
 
-import GroceryOrderMgmtService.Constants;
+import GroceryOrderMgmtService.IConstants;
 import GroceryOrderMgmtService.config.WarehouseConfig;
 
 import java.text.ParseException;
@@ -41,7 +41,7 @@ public class WarehouseLocalDao implements WarehouseDao{
             warehouseConfig.get(warehouseId).forEach(warehouseDayWiseData -> {
                 String dateString = warehouseDayWiseData.getDate();
                 try {
-                    Date date = new SimpleDateFormat(Constants.dateParserPattern).parse(dateString);
+                    Date date = new SimpleDateFormat(IConstants.dateParserPattern).parse(dateString);
                     warehouse.populateItemQuantityMap(date, warehouseDayWiseData.getItemQuantityMap());
                 } catch (ParseException e) {
                     e.printStackTrace();

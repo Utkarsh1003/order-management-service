@@ -4,27 +4,20 @@ import GroceryOrderMgmtService.dao.WarehouseDao;
 import GroceryOrderMgmtService.dao.WarehouseLocalDao;
 import GroceryOrderMgmtService.dto.ItemRequest;
 import GroceryOrderMgmtService.dto.OrderRequest;
-import GroceryOrderMgmtService.dao.Warehouse;
 
 import java.util.List;
-import java.util.Map;
 
-public class ValidateItemAvailability implements OrderValidator {
-    private static ValidateItemAvailability instance;
-
-    public static ValidateItemAvailability getInstance(){
-        if(instance == null)
-            instance = new ValidateItemAvailability();
-
-        return instance;
-    }
-
+public class ValidateItemAvailability extends OrderValidatorDecorator {
     private WarehouseDao warehouseDao;
-    private ValidateItemAvailability(){
+    public ValidateItemAvailability(IOrderValidator orderValidator){
+        super(orderValidator);
         this.warehouseDao = WarehouseLocalDao.getInstance();
     }
 
     public boolean validate(OrderRequest request) {
+        if(!super.validate(request))
+            return false;
+
         List<ItemRequest> items = request.getItems();
 
         for(ItemRequest itemRequest:items) {

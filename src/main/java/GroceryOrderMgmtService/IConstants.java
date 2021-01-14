@@ -1,5 +1,5 @@
 package GroceryOrderMgmtService;
 
-public interface Constants {
+public interface IConstants {
     final String dateParserPattern = "dd-MM-yyyy";
 }

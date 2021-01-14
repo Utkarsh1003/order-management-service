@@ -5,11 +5,11 @@ import GroceryOrderMgmtService.dao.Warehouse;
 import GroceryOrderMgmtService.dao.WarehouseLocalDao;
 import GroceryOrderMgmtService.dto.*;
 import GroceryOrderMgmtService.enums.ValidatorRule;
-import GroceryOrderMgmtService.validators.OrderValidator;
+import GroceryOrderMgmtService.validators.IOrderValidator;
 
 import java.util.List;
 
-public class OrderFulfilmentImpl implements OrderFulfilmentService{
+public class OrderFulfilmentImpl implements IOrderFulfilmentService {
 
     public OrderResponse canFulfilOrder(OrderRequest orderRequest) {
         boolean canFulfill = checkOrderAvailability(orderRequest);
@@ -44,14 +44,7 @@ public class OrderFulfilmentImpl implements OrderFulfilmentService{
         return response;
     }
 
-    public boolean checkOrderAvailability(OrderRequest request){
-        List<OrderValidator> orderValidators = ValidatorFactory.getInstance().getValidators(ValidatorRule.RULE1);
-
-        for (OrderValidator orderValidator : orderValidators) {
-            if(!orderValidator.validate(request))
-                return false;
-        }
-
-        return true;
+    private boolean checkOrderAvailability(OrderRequest request){
+        return ValidatorFactory.getInstance().getValidator(ValidatorRule.RULE1).validate(request);
     }
 }

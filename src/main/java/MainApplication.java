@@ -4,7 +4,7 @@ import GroceryOrderMgmtService.dao.CategoryThresholdLocalDao;
 import GroceryOrderMgmtService.dao.ItemLocalDao;
 import GroceryOrderMgmtService.dao.WarehouseLocalDao;
 import GroceryOrderMgmtService.services.OrderFulfilmentImpl;
-import GroceryOrderMgmtService.services.OrderFulfilmentService;
+import GroceryOrderMgmtService.services.IOrderFulfilmentService;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
@@ -14,7 +14,7 @@ public class MainApplication extends Application<OrderMgmtServiceConfiguration> 
     }
 
     public void run(OrderMgmtServiceConfiguration configuration, Environment environment) throws Exception {
-        OrderFulfilmentService orderFulfilmentService = new OrderFulfilmentImpl();
+        IOrderFulfilmentService orderFulfilmentService = new OrderFulfilmentImpl();
         OrderResource orderResource = new OrderResource(orderFulfilmentService);
         WarehouseHealthCheck warehouseHealthCheck = new WarehouseHealthCheck();
 
