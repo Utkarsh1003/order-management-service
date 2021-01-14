@@ -1,6 +1,7 @@
 # Order Management Service
 
 This is a simple dropwizard project for order management service.
+Used Decorator Pattern for validators.
 
 ## Table of Content
 - [Problem Statement](#problem-statement)
