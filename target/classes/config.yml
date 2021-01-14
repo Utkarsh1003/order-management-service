@@ -28,7 +28,7 @@ warehouseConfig:
 categoryThresholdConfig:
   - date: "01-01-2020"
     itemCategoryThresholdMap:
-      F_N_V: 200
+      F_N_V: 50
       DAIRY: 20
   - date: "02-01-2020"
     itemCategoryThresholdMap:

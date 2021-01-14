@@ -1,24 +1,25 @@
-package GroceryOrderMgmtService.validators;
+package GroceryOrderMgmtService.validators.orderValidationDecorators;
 
 import GroceryOrderMgmtService.dao.CategoryThresholdDao;
 import GroceryOrderMgmtService.dao.CategoryThresholdLocalDao;
 import GroceryOrderMgmtService.dto.ItemRequest;
 import GroceryOrderMgmtService.dto.OrderRequest;
 import GroceryOrderMgmtService.enums.ItemCategory;
+import GroceryOrderMgmtService.validators.IOrderValidator;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ValidateCategoryThreshold extends OrderValidatorDecorator {
+public class CategoryThresholdDecorator extends OrderValidationDecorator {
     private CategoryThresholdDao categoryThresholdDao;
-    public ValidateCategoryThreshold(IOrderValidator orderValidator){
+    public CategoryThresholdDecorator(IOrderValidator orderValidator){
         super(orderValidator);
         this.categoryThresholdDao = CategoryThresholdLocalDao.getInstance();
     }
 
     @Override
     public boolean validate(OrderRequest request) {
-        if(!super.validate(request))
+        if(!decoratedOrderValidator.validate(request))
             return false;
 
         Map<ItemCategory, Integer> itemCategoryCount = getItemCategoryCountFromReq(request);

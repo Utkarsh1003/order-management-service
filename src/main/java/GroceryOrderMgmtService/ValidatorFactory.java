@@ -3,11 +3,8 @@ package GroceryOrderMgmtService;
 import GroceryOrderMgmtService.enums.ValidatorRule;
 import GroceryOrderMgmtService.validators.DefaultOrderValidator;
 import GroceryOrderMgmtService.validators.IOrderValidator;
-import GroceryOrderMgmtService.validators.ValidateCategoryThreshold;
-import GroceryOrderMgmtService.validators.ValidateItemAvailability;
-
-import java.util.Arrays;
-import java.util.List;
+import GroceryOrderMgmtService.validators.orderValidationDecorators.CategoryThresholdDecorator;
+import GroceryOrderMgmtService.validators.orderValidationDecorators.ItemAvailabilityDecorator;
 
 public class ValidatorFactory {
     private static ValidatorFactory instance;
@@ -28,7 +25,7 @@ public class ValidatorFactory {
     public IOrderValidator getValidator(ValidatorRule validatorRule){
         switch (validatorRule) {
             case RULE1:
-                return new ValidateItemAvailability(new ValidateCategoryThreshold(defaultValidator));
+                return new ItemAvailabilityDecorator(new CategoryThresholdDecorator(defaultValidator));
             default:
                 return defaultValidator;
         }

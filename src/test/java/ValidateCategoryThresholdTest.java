@@ -4,7 +4,7 @@ import GroceryOrderMgmtService.dto.ItemRequest;
 import GroceryOrderMgmtService.dto.OrderRequest;
 import GroceryOrderMgmtService.enums.ItemCategory;
 import GroceryOrderMgmtService.validators.DefaultOrderValidator;
-import GroceryOrderMgmtService.validators.ValidateCategoryThreshold;
+import GroceryOrderMgmtService.validators.orderValidationDecorators.CategoryThresholdDecorator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,7 +33,7 @@ public class ValidateCategoryThresholdTest {
 
         orderRequest.setItems(Collections.singletonList(itemRequest));
 
-        boolean validate = new ValidateCategoryThreshold(DefaultOrderValidator.getInstance()).validate(orderRequest);
+        boolean validate = new CategoryThresholdDecorator(DefaultOrderValidator.getInstance()).validate(orderRequest);
         Assert.assertTrue(validate);
     }
 }
