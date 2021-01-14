@@ -2,13 +2,14 @@ package GroceryOrderMgmtService.validators.orderValidationDecorators;
 
 import GroceryOrderMgmtService.dao.CategoryThresholdDao;
 import GroceryOrderMgmtService.dao.CategoryThresholdLocalDao;
+import GroceryOrderMgmtService.dto.Item;
 import GroceryOrderMgmtService.dto.ItemRequest;
 import GroceryOrderMgmtService.dto.OrderRequest;
 import GroceryOrderMgmtService.enums.ItemCategory;
 import GroceryOrderMgmtService.validators.IOrderValidator;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CategoryThresholdDecorator extends OrderValidationDecorator {
     private CategoryThresholdDao categoryThresholdDao;
@@ -22,7 +23,9 @@ public class CategoryThresholdDecorator extends OrderValidationDecorator {
         if(!decoratedOrderValidator.validate(request))
             return false;
 
-        Map<ItemCategory, Integer> itemCategoryCount = getItemCategoryCountFromReq(request);
+        Map<ItemCategory, Integer> itemCategoryCount = request.getItems().stream()
+                .collect(Collectors.groupingBy(Item::getItemCategory, Collectors.summingInt(ItemRequest::getQuantity)));
+
         for (ItemCategory itemCategory : itemCategoryCount.keySet()) {
             Integer threshold = categoryThresholdDao.getLimit(request.getDeliveryDate(), itemCategory);
             if(threshold == null || itemCategoryCount.get(itemCategory) >= threshold)
@@ -30,16 +33,5 @@ public class CategoryThresholdDecorator extends OrderValidationDecorator {
         }
 
         return true;
-    }
-
-    private Map<ItemCategory, Integer> getItemCategoryCountFromReq(OrderRequest request) {
-        Map<ItemCategory, Integer> itemCategoryCountMap = new HashMap<>();
-        for (ItemRequest itemRequest : request.getItems()) {
-            Integer itemCountCount = itemCategoryCountMap.getOrDefault(itemRequest.getItemCategory(), 0);
-            itemCountCount += itemRequest.getQuantity();
-
-            itemCategoryCountMap.put(itemRequest.getItemCategory(), itemCountCount);
-        }
-        return itemCategoryCountMap;
     }
 }
