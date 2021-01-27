@@ -32,6 +32,7 @@ We can fulfil the order only if all the criteria are met.
 ## How to run
 Running the server
 - Clone project to you local system
+- Run ```mav clean install```
 - Go into your project directory and run ```java -jar target/OrderManagementService-1.0-SNAPSHOT.jar server src/main/resources/config.yml```
 
 The Dropwizard application is now listening on port 8080. You can use the following APIs to test it.
